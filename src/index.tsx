@@ -12,16 +12,14 @@ import PizzaServiceApi from './services/PizzaServiceApi';
 const pizzaService = new PizzaServiceApi();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={ store }>
-        <ErrorBoundary>
-          <PizzaServiceProvider value={ pizzaService }>
-            <Router>
-              <App />
-            </Router>
-          </PizzaServiceProvider>
-        </ErrorBoundary>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={ store }>
+      <ErrorBoundary>
+        <PizzaServiceProvider value={ pizzaService }>
+          <Router>
+            <App/>
+          </Router>
+        </PizzaServiceProvider>
+      </ErrorBoundary>
+  </Provider>,
   document.getElementById('root')
 );
