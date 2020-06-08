@@ -1,7 +1,11 @@
-import { RECEIVE_PIZZAS } from '../constants/ActionTypes';
-import { PizzaData } from '../models/PizzaData';
+import { FETCH_PIZZAS } from '../constants/ActionTypes';
+import PizzaServiceApi from '../services/PizzaServiceApi';
 
-export const receivePizzas = (pizzas: PizzaData[]) => ({
-    type: RECEIVE_PIZZAS,
-    pizzas
-});
+const pizzaServiceApi = new PizzaServiceApi();
+
+export const fetchPizzas = () => (dispatch: any) => {
+    pizzaServiceApi.getPizzas()
+        .then((payload) => {
+            return dispatch({ type: FETCH_PIZZAS, payload });
+        });
+};
