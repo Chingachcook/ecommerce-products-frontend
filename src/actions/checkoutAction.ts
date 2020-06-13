@@ -1,4 +1,4 @@
-import { CHECKOUT_SUCCESS, CHECKOUT_FAILURE } from '../constants/ActionTypes';
+import { CHECKOUT_SUCCESS, CHECKOUT_FAILURE, CHECKOUT_DONE } from '../constants/ActionTypes';
 import { CartItemData } from '../models/CartItemData';
 import { PizzaProductOrder } from '../models/PizzaProductOrder';
 import { CheckoutData } from '../models/CheckoutData';
@@ -40,3 +40,9 @@ export const checkout = (items: CartItemData[] | undefined) => (dispatch: any) =
             });
         });
 };
+
+export const checkoutDone = () => (dispatch: any) => {
+  return dispatch({
+    type: CHECKOUT_DONE
+  });
+}

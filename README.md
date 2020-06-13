@@ -20,4 +20,6 @@ Your app is ready to be deployed!
 
 See the section about [wdeployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### ``
+### `heroku-postbuild`
+
+Build for heroku with proxy setup and node js server

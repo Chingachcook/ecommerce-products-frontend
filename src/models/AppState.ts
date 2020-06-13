@@ -7,5 +7,9 @@ export interface AppState {
     };
     cart: {
         cartItems: CartItemData[];
+    };
+    checkout: {
+        isCheckoutSuccess: boolean;
+        isCheckoutError: boolean;
     }
 }

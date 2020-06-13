@@ -16,7 +16,7 @@ export const PizzaItem: React.SFC<PizzaItemProps> = (props) => {
             <Meta
                 title={ pizza.name }
                 description={ `${formatDollarCurrency(pizza.price)}` }
-                style={{ padding: '0 0 10px 0' }}
+                style={{ padding: '0 0 10px 0', textAlign: 'center' }}
             />
             <Button
                 block

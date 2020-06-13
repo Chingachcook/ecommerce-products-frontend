@@ -8,6 +8,10 @@ const initialState: AppState = {
     },
     cart: {
         cartItems: []
+    },
+    checkout: {
+        isCheckoutSuccess: false,
+        isCheckoutError: false
     }
 }
 

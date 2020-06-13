@@ -1,17 +1,41 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, Button } from 'antd';
+import { Card, Button, notification } from 'antd';
 import { formatDollarCurrency, formatEuroCurrency } from '../../utils';
 import { CartProps } from './props';
 import { CartState } from './state';
 import { AppState } from '../../models/AppState';
 import { removeFromCart } from '../../actions/cartAction';
-import { checkout } from '../../actions/checkoutAction';
+import { checkout, checkoutDone } from '../../actions/checkoutAction';
 
 class Cart extends Component<CartProps, CartState> {
     constructor(props: CartProps) {
         super(props);
         this.state = new CartState();
+    }
+
+    openSuccessNotification = () => {
+        notification.success({
+            message: 'Order made successfully',
+            description: 'Delivery will be in ~1 hour. Thank you for choosing our service.',
+        });
+      };
+      
+      openErrorNotification = () => {
+        notification.success({
+            message: 'Order failed',
+            description: 'Please try again.',
+        });
+    };
+
+    componentWillUpdate(props: CartProps) {
+        if (props.isCheckoutSuccess) {
+            this.openSuccessNotification();
+            props.checkoutDone && props.checkoutDone();            
+        } else if (props.isCheckoutError) {
+            this.openErrorNotification();
+            props.checkoutDone && props.checkoutDone();
+        }
     }
 
     render() {
@@ -54,7 +78,9 @@ class Cart extends Component<CartProps, CartState> {
 }
 
 const mapStateToProps = (state: AppState) => ({
-    cartItems: state.cart.cartItems
+    cartItems: state.cart.cartItems,
+    isCheckoutSuccess: state.checkout.isCheckoutSuccess,
+    isCheckoutError: state.checkout.isCheckoutError
 });
 
-export default connect(mapStateToProps, { removeFromCart, checkout })(Cart);
+export default connect(mapStateToProps, { removeFromCart, checkout, checkoutDone })(Cart);
