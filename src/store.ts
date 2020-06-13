@@ -8,6 +8,10 @@ let initialState: any = {
     },
     cart: {
         cartItems: []
+    },
+    checkout: {
+        isCheckoutSuccess: false,
+        isCheckoutError: false
     }
 };
 
@@ -18,6 +22,10 @@ if (localStorage.getItem('cartItems')) {
         },
         pizzas: {
             pizzaItems: []
+        },
+        checkout: {
+            isCheckoutSuccess: false,
+            isCheckoutError: false
         }
     }
 }
